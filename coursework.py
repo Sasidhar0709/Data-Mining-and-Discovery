@@ -39,7 +39,7 @@ dataset = normalizing_scaller.transform(dataset)
 print(f"Normlized Features its max : \n{dataset.max()} \n\nits min : \n{dataset.min()}" )
 
 # Splitting the dataset into the Training set and Test set
-features_train, features_test, output_train, output_test = train_test_split (dataset, dataset_output, test_size = 0.20,random_state =0)
+feature_train, feature_test, output_train, output_test = train_test_split (dataset, dataset_output, test_size = 0.20,random_state =0)
 
 
 # Initialzation of ANN
@@ -65,14 +65,14 @@ model.add(Dense(1, activation="sigmoid",name= 'Classification_Layer'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # Training 
-model.fit(features_train, output_train, batch_size=10, epochs=50, verbose=1)
+model.fit(feature_train, output_train, batch_size=10, epochs=50, verbose=1)
 
 # Accuracy
-test_loss, test_acc = model.evaluate(features_test, output_test)
+test_loss, test_acc = model.evaluate(feature_test, output_test)
 print(test_acc)
 
 # Predicting the Test set results
-y_pred = model.predict(features_test)
+y_pred = model.predict(feature_test)
 y_pred = (y_pred > 0.5)
 
 # Making the Confusion Matrix
